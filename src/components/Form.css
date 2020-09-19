@@ -1,0 +1,11 @@
+.form {
+    padding: 10px;
+    border: 2px solid blue;
+    margin: 10px auto;
+    width: 70%;
+    text-align: center;
+}
+
+.form label {
+    padding: 5px;
+}
