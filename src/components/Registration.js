@@ -1,8 +1,8 @@
 import React from 'react';
 import Field from './Field'
-import './Form.css';
+import './Registration.css';
 
-class Form extends React.Component {
+class Registration extends React.Component {
 
      render() {
 
@@ -21,4 +21,4 @@ class Form extends React.Component {
 
 }
 
-export default Form;
+export default Registration;
