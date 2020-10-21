@@ -8,8 +8,8 @@ import Product from "./components/Product";
 import {BrowserRouter,Route} from "react-router-dom"
 
 class App extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
        
     }
     
