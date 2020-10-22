@@ -1,31 +1,32 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import ProductoDisplay from './ProductDisplay';
+import ProductDisplay from './ProductDisplay';
+
 
 
 function Products() {
 
 
-    const [product,setProduct] = useState({});
+    const [products,setProducts] = useState([]);
     const [loading,setLoading] = useState(true);
 
-    let productId = 1;
-    console.log(productId);
 
     useEffect(
         () => {
-            fetch("https://jsonplaceholder.typicode.com/posts/1"+productId)
+            fetch("https://jsonplaceholder.typicode.com/posts/")
             .then(res => res.json() )
             .then(result => {
-                    console.log(result)
-                    setProduct(result);
+                    
+                    let firstFourProducts = result.slice(0,4);
+
+                    setProducts(firstFourProducts);
                     setLoading(false);
                     
             },
                 (error) => { console.log("hubo un error" , error)
             }) 
         }, 
-        [productId]
+        []
     );
         
   
@@ -37,14 +38,18 @@ function Products() {
     }
     else {
          return (
-            <div> 
-                <ProductoDisplay product={product}/>
-                <ProductoDisplay product={product}/> 
-                <ProductoDisplay product={product}/>  
+            <div>
+               {products.map( product => <ProductDisplay product={product} button={false}/>)}
+                  
             </div>
         )     
     }
-       
+/*
+/{products.map( product )}
+                <ProductoDisplay product={product}/>
+                <ProductoDisplay product={product}/> 
+                <ProductoDisplay product={product}/>
+*/
 
 }
 

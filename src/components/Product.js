@@ -35,7 +35,7 @@ function Product(props) {
     else {
          return (
             <div> 
-                <ProductoDisplay product={product}/> 
+                <ProductoDisplay product={product} button={true}/> 
             </div>
         )     
     }
