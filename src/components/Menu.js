@@ -1,4 +1,5 @@
 import React from 'react';
+import { Nav, Navbar } from 'react-bootstrap';
 import {Link} from "react-router-dom";
 
 function Menu(props) {
@@ -9,12 +10,19 @@ function Menu(props) {
         {name:"login", route: "/login"}
     ]
 
+    const navLinks = menu.map(route => <Nav.Link ><Link to={route.route}>{route.name}</Link></Nav.Link>)        
+    
     
     return (
     <>
-        {
-            menu.map(route => <li><Link to={route.route}>{route.name}</Link></li>)        
-        }
+        <Navbar bg="light" variant="light">
+            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+            <Nav className="mr-auto">
+                {navLinks[0]}
+                {navLinks[1]}
+                {navLinks[2]}
+            </Nav>
+        </Navbar>
     </>
     )
 
