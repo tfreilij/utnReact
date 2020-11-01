@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import ProductDisplay from './ProductDisplay';
-
+import {getProducts} from '../Services/ProductsServices'; 
 
 
 function Products() {
@@ -13,6 +13,21 @@ function Products() {
 
     useEffect(
         () => {
+            
+            let result = getProducts()
+            .then( result => {
+                    console.log("result", result);
+                    let data = result.data;
+                    if ( data.length > 0) {
+                        let firstFourProducts = data.slice(0,4);
+
+                        setProducts(firstFourProducts);
+                        setLoading(false);
+                    }
+                }
+            );
+                   
+            /*
             fetch("https://jsonplaceholder.typicode.com/posts/")
             .then(res => res.json() )
             .then(result => {
@@ -25,6 +40,7 @@ function Products() {
             },
                 (error) => { console.log("hubo un error" , error)
             }) 
+            */
         }, 
         []
     );
