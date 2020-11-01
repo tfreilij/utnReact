@@ -42,7 +42,7 @@ function ProductDisplay(props) {
                     Comprar
                 </button> 
  
-                <Link to={'/home'}>
+                <Link to={'/'}>
                     <button style={{margin:"auto"}}> 
                         Volver
                     </button>
