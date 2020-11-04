@@ -2,6 +2,7 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import ProductDisplay from './ProductDisplay';
 import {getProducts} from '../Services/ProductsServices'; 
+import { CardDeck } from 'react-bootstrap';
 
 
 function Products() {
@@ -55,17 +56,13 @@ function Products() {
     else {
          return (
             <div>
-               {products.map( product => <ProductDisplay product={product} button={false}/>)}
-                  
+                <CardDeck>
+                    {products.map( product => <ProductDisplay product={product} button={false}/>)}
+               </CardDeck>
             </div>
         )     
     }
-/*
-/{products.map( product )}
-                <ProductoDisplay product={product}/>
-                <ProductoDisplay product={product}/> 
-                <ProductoDisplay product={product}/>
-*/
+
 
 }
 

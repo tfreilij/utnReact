@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import { Card } from 'react-bootstrap';
 
 function ProductDisplay(props) {
 
@@ -27,39 +28,45 @@ function ProductDisplay(props) {
     if ( showButton )
     {
        
-        productDisplay = 
-            <div style={productBoxStyle}>
-                <div style={styleInternalDiv}>
-                    {product.id}  
-                </div>
-                <div style={styleInternalDiv}> 
-                    {product.title} 
-                </div>
-                <div style={styleInternalDiv}> 
-                    {product.body} 
-                </div>
-                <button style={{margin:"auto"}} onClick={handleClick} > 
-                    Comprar
-                </button> 
- 
-                <Link to={'/'}>
-                    <button style={{margin:"auto"}}> 
-                        Volver
-                    </button>
-                </Link>
+        productDisplay =
 
-            </div>
+
+        <Card style={{ width: '18rem' }}>
+            <Card.Body>
+                <Card.Title>{product.title}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{product.id}</Card.Subtitle>
+                <Card.Text>
+                {product.body}
+                </Card.Text>
+                <Card.Link href="#">
+                    <button style={{margin:"auto"}} onClick={handleClick} > 
+                        Comprar
+                    </button>
+                </Card.Link>
+                <Card.Link href="#">
+                    <Link to={'/'}>
+                        <button> Volver </button>
+                    </Link>
+                </Card.Link>
+            </Card.Body>
+        </Card>
+
     }
     else {
         productDisplay = 
-            <div style={productBoxStyle}>
-                <div style={styleInternalDiv}>
-                    <Link to={'/product/'+productId}>{productId}</Link>  
-                </div>
-                
-                <div style={styleInternalDiv}> {product.title} </div>
-                <div style={styleInternalDiv}> {product.body} </div>             
-            </div>
+
+        <Card style={{ width: '18rem' }}>
+            <Card.Body>
+                <Card.Title>{product.title}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                    <Link to={'/product/'+productId}>{productId}</Link> 
+                    </Card.Subtitle>
+                <Card.Text>
+                    {product.body}
+                </Card.Text>
+            </Card.Body>
+        </Card>
+            
     }
     
 

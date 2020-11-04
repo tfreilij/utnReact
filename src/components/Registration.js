@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Field from './Field'
+import firebase from '../Config/firebase'
 
 function Registration() {
 
