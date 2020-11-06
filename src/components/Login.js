@@ -1,23 +1,44 @@
-import React from 'react';
-import Field from './Field';
+import React, {useState } from 'react';
+import firebase from '../Config/firebase';
+
+
+import { Form, Button } from 'react-bootstrap';
 
 
 function Login() {
 
-    let formStyle = {
-        padding: "10px",
-        border: "2px solid blue",
-        margin: "10px auto",
-        width: "70%",
-        textAlign: "center"
+    const [form,setForm] = useState({
+      user:'',
+      password:''
+    });
+
+    const handleClick = () => alert(form.user + " " + form.password);
+    const handleChange = (e) => {
+      const target = e.target;
+      console.log(target.name)
+      console.log(target.value)
+      setForm({
+        ...form,
+        [target.name]:target.value
+      })
     }
 
+   
     return(
-        <div style={formStyle}>
-            <Field label={"User"}/>
-            <Field label={"Password"}/>
-            <button> Login </button>
-        </div>
+      <Form>
+      <Form.Group controlId="formGroupEmail">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control onChange={handleChange} type="email" name="user" placeholder="Enter email" />
+      </Form.Group>
+      <Form.Group controlId="formGroupPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control onChange={handleChange} type="password" name="password" placeholder="Password" />
+      </Form.Group>
+      <Button onClick={handleClick} variant="primary" type="submit">
+       Accept
+      </Button>
+      
+    </Form>
     ) 
 
        
