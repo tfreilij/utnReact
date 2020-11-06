@@ -10,7 +10,7 @@ function Menu(props) {
         {name:"login", route: "/login"}
     ]
 
-    const navLinks = menu.map(route => <Nav.Link ><Link to={route.route}>{route.name}</Link></Nav.Link>)        
+    const navLinks = menu.map(route => <Nav.Link as={Link} to={route.route}>{route.name}</Nav.Link>)        
     
     
     return (
