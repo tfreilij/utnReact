@@ -1,6 +1,4 @@
 import React, {useState } from 'react';
-import firebase from '../Config/firebase';
-
 
 import { Form, Button } from 'react-bootstrap';
 

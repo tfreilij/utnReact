@@ -8,8 +8,3 @@ export function getProduct(idProduct) {
     return instance.get("/posts/"+idProduct)
 }
 
-/*
-export function createProduct(data){
-    
-}
-*/

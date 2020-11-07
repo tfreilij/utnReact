@@ -15,9 +15,8 @@ function Products() {
     useEffect(
         () => {
             
-            let result = getProducts()
+            getProducts()
             .then( result => {
-                    console.log("result", result);
                     let data = result.data;
                     if ( data.length > 0) {
                         let firstFourProducts = data.slice(0,4);

@@ -13,7 +13,14 @@ function Registration() {
       password:''
     });
 
-    const handleClick = () => createUser(form);
+    const handleClick = (e) =>{
+      
+      createUser(form.name,form.surname,form.email,form.password);
+      e.preventDefault();
+
+
+    }
+
     const handleChange = (e) => {
       const target = e.target;
 
@@ -42,7 +49,7 @@ function Registration() {
         <Form.Label>Surname</Form.Label>
         <Form.Control onChange={handleChange} type="text" name="surname" value={form.surname} placeholder="Surname" />
       </Form.Group>
-      <Button onClick={handleClick} variant="primary" type="submit">
+      <Button onClick={handleClick} variant="primary" type="submit" >
         Accept
       </Button>
       
