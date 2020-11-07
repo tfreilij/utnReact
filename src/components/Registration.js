@@ -1,68 +1,55 @@
-import React, { useState } from 'react';
-import Field from './Field'
-import firebase from '../Config/firebase'
+import React, {useState } from 'react';
+
+import { createUser } from '../Services/UsersServices'; 
+import { Form, Button } from 'react-bootstrap';
+
 
 function Registration() {
 
-    let formStyle = {
-        padding: "10px",
-        border: "2px solid blue",
-        margin: "10px auto",
-        width: "70%",
-        textAlign: "center"
-    }
-    
-    const [form,setForm] = useState({name:'',
-                                    apellido:'',
-                                    email:'',
-                                    password:''
-                                    });
-    
-    const handleSubmit = (e) => {
-        firebase.auth.createUserWithEmailAndPassword(form.email,form.password)
-        .then( data => {
-                console.log(data)
-                firebase.database.collection("usuarios").add({
-                    nombre:form.nombre,
-                    apellido:form.apellido,
-                    email:form.email,
-                    userId:data.user.uid
-                })
-                .then(data => { console.log("data database",data)})
-                .catch(error => {
-                  console.log("error database", error)  
-                })
-                }
-            )
-        .catch(err => {
-            console.log(err)
-        })
+    const [form,setForm] = useState({
+      email:'',
+      name:'',
+      surname:'',
+      password:''
+    });
 
-    }
+    const handleClick = () => createUser(form);
     const handleChange = (e) => {
-        const target = e.target;
-        const name = target.name;
-        const value = target.value;
+      const target = e.target;
 
-        setForm({
-            ...form,
-            [name]:value
-        });
+      setForm({
+        ...form,
+        [target.name]:target.value
+      })
     }
 
-    return (
-        <div style={formStyle}>
-            <Field label={"Nombre"} />
-            <Field label={"Apellido"} />
-            <Field label={"Email"}/>
-            <Field label={"Telefono"}/>
-            <Field label={"Password"}/>
-            <Field label={"Confirmar password"}/>
+   
+    return(
+      <Form>
+      <Form.Group controlId="formGroupEmail">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control onChange={handleChange} type="email" name="email" value={form.email} placeholder="Enter email" />
+      </Form.Group>
+      <Form.Group controlId="formGroupPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control onChange={handleChange} type="password" name="password" value={form.password} placeholder="Password" />
+      </Form.Group>
+      <Form.Group controlId="formGroupName">
+        <Form.Label>Name</Form.Label>
+        <Form.Control onChange={handleChange} type="text" name="name" value ={form.name} placeholder="Name" />
+      </Form.Group>
+      <Form.Group controlId="formGroupSurname">
+        <Form.Label>Surname</Form.Label>
+        <Form.Control onChange={handleChange} type="text" name="surname" value={form.surname} placeholder="Surname" />
+      </Form.Group>
+      <Button onClick={handleClick} variant="primary" type="submit">
+        Accept
+      </Button>
+      
+    </Form>
+    ) 
 
-        </div>
-    )
-
-    
+       
 
 }
 
