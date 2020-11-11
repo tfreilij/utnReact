@@ -11,6 +11,7 @@ function Product(props) {
 
     useEffect(
         () => {
+            
             fetch("https://jsonplaceholder.typicode.com/posts/"+productId)
             .then(res => res.json() )
             .then(result => {

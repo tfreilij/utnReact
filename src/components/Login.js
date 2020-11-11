@@ -1,20 +1,30 @@
 import React, {useState } from 'react';
 
 import { Form, Button } from 'react-bootstrap';
+import { signInWithEmailAndPassword } from '../Services/UsersServices';
+import { useHistory } from "react-router-dom";
 
 
 function Login() {
 
     const [form,setForm] = useState({
-      user:'',
+      email:'',
       password:''
     });
 
-    const handleClick = () => alert(form.user + " " + form.password);
+    const history = useHistory();
+    
+    const handleClick = (e) =>{
+      
+      const validLogin = signInWithEmailAndPassword(form.email,form.password);
+
+      if ( validLogin ) { history.push("/")}
+      e.preventDefault();
+
+
+    }
     const handleChange = (e) => {
       const target = e.target;
-      console.log(target.name)
-      console.log(target.value)
       setForm({
         ...form,
         [target.name]:target.value
@@ -26,7 +36,7 @@ function Login() {
       <Form>
       <Form.Group controlId="formGroupEmail">
         <Form.Label>Email address</Form.Label>
-        <Form.Control onChange={handleChange} type="email" name="user" placeholder="Enter email" />
+        <Form.Control onChange={handleChange} type="email" name="email" placeholder="Enter email" />
       </Form.Group>
       <Form.Group controlId="formGroupPassword">
         <Form.Label>Password</Form.Label>

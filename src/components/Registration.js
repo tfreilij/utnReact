@@ -1,11 +1,12 @@
 import React, {useState } from 'react';
 
-import { createUser } from '../Services/UsersServices'; 
+import { createUserWithEmailAndPassword, addNewUser } from '../Services/UsersServices'; 
 import { Form, Button } from 'react-bootstrap';
+import { useHistory} from 'react-router-dom';
 
 
-function Registration() {
-
+const Registration = () => {
+    const history = useHistory();
     const [form,setForm] = useState({
       email:'',
       name:'',
@@ -15,7 +16,31 @@ function Registration() {
 
     const handleClick = (e) =>{
       
-      createUser(form.name,form.surname,form.email,form.password);
+      const name = form.name;
+      const surname = form.surname;
+      const email = form.email;
+      const password = form.password;
+
+      createUserWithEmailAndPassword(email,password)
+      .then(data => {
+        const userId = data.user.uid;
+      
+        addNewUser(name,surname,email,userId)
+        .then( data => {
+               console.log("user added ",data );
+               history.push("/")
+        })
+        .catch( error => {
+              console.log("user error", error);
+        })
+      })
+      .catch( err => {
+          console.log("there was an error in the user registration", err);
+      })
+
+
+
+      
       e.preventDefault();
 
 
