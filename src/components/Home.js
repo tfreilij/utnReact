@@ -16,31 +16,11 @@ function Products() {
         () => {
             
             getProducts()
-            .then( result => {
-                    let data = result.data;
-                    if ( data.length > 0) {
-                        let firstFourProducts = data.slice(0,4);
-
-                        setProducts(firstFourProducts);
+            .then( querySnapshot => {
+                        setProducts(querySnapshot.docs);
                         setLoading(false);
                     }
-                }
-            );
-                   
-            /*
-            fetch("https://jsonplaceholder.typicode.com/posts/")
-            .then(res => res.json() )
-            .then(result => {
-                    
-                    let firstFourProducts = result.slice(0,4);
-
-                    setProducts(firstFourProducts);
-                    setLoading(false);
-                    
-            },
-                (error) => { console.log("hubo un error" , error)
-            }) 
-            */
+                );
         }, 
         []
     );
@@ -56,7 +36,7 @@ function Products() {
          return (
             <div>
                 <CardDeck>
-                    {products.map( product => <ProductDisplay product={product} button={false}/>)}
+                    {products.map( product => <ProductDisplay id={product.id} product={product.data()} button={false}/>)}
                </CardDeck>
             </div>
         )     

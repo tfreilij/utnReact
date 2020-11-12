@@ -4,59 +4,71 @@ import { Card } from 'react-bootstrap';
 
 function ProductDisplay(props) {
 
-    let product = props.product;
+    const product = props.product;
     let showButton = props.button;
 
+    const name = product.name;
+    const description = product.description;
+    const price = product.price;
+    const sku = product.sku;
+    const productId =props.id;
     
     const handleClick = () => alert('producto comprado');
-    let productId = product.id;
-    let productDisplay;
-    if ( showButton )
-    {
+   
+    const heading = <>
+            <Card.Title>
+                <Link to={'/product/'+productId}>
+                    {name}    
+                </Link>
+            </Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">
+                {sku}
+            </Card.Subtitle>
+    </>;
+
+    const body = <>
+        <Card.Text>
+            {description}
+        </Card.Text>
+        <Card.Text>
+            {price}
+        </Card.Text>
+    </>;
+
+    const buyButton = <Card.Link href="#">
+                        <button style={{margin:"auto"}} onClick={handleClick} > 
+                            buy
+                        </button>
+                    </Card.Link>;
+    
+    const returnButton = <Card.Link href="#">
+                            <Link to={'/'}>
+                                <button> Volver </button>
+                            </Link>
+                        </Card.Link>;
+
+    if ( showButton ){
        
-        productDisplay =
-
-
-        <Card style={{ width: '18rem' }}>
-            <Card.Body>
-                <Card.Title>{product.title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{product.id}</Card.Subtitle>
-                <Card.Text>
-                {product.body}
-                </Card.Text>
-                <Card.Link href="#">
-                    <button style={{margin:"auto"}} onClick={handleClick} > 
-                        Comprar
-                    </button>
-                </Card.Link>
-                <Card.Link href="#">
-                    <Link to={'/'}>
-                        <button> Volver </button>
-                    </Link>
-                </Card.Link>
-            </Card.Body>
-        </Card>
+        return <Card style={{ width: '18rem' }}>
+                    <Card.Body>
+                        {heading}
+                        {body}
+                        {buyButton}
+                        {returnButton}
+                    </Card.Body>
+                </Card>
 
     }
     else {
-        productDisplay = 
-
-        <Card style={{ width: '18rem' }}>
-            <Card.Body>
-                <Card.Title>{product.title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">
-                    <Link to={'/product/'+productId}>{productId}</Link> 
-                    </Card.Subtitle>
-                <Card.Text>
-                    {product.body}
-                </Card.Text>
-            </Card.Body>
-        </Card>
+        return <Card style={{ width: '18rem' }}>
+                    <Card.Body>
+                        {heading}
+                        {body}
+                    </Card.Body>
+                </Card>
             
     }
     
-
-    return productDisplay;
 
 
 }
