@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import ProductoDisplay from './ProductDisplay';
+import {getProduct} from '../Services/ProductsServices';
 
 function Product(props) {
 
@@ -7,23 +8,22 @@ function Product(props) {
     const [loading,setLoading] = useState(true);
 
     let productId = props.match.params.id
-    console.log(productId);
+
 
     useEffect(
         () => {
-            
-            fetch("https://jsonplaceholder.typicode.com/posts/"+productId)
-            .then(res => res.json() )
-            .then(result => {
-                    console.log(result)
-                    setProduct(result);
-                    setLoading(false);
+ 
+            getProduct(productId)
+            .then(doc => {
+
+                setProduct(doc);
+                setLoading(false);
                     
             },
                 (error) => { console.log("hubo un error" , error)
             }) 
         }, 
-        [productId]
+        []
     );
         
   
@@ -36,7 +36,7 @@ function Product(props) {
     else {
          return (
             <div> 
-                <ProductoDisplay product={product} button={true}/> 
+                <ProductoDisplay id={product.id} product={product.data()} button={true}/> 
             </div>
         )     
     }

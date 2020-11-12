@@ -35,16 +35,14 @@ function ProductDisplay(props) {
         </Card.Text>
     </>;
 
-    const buyButton = <Card.Link href="#">
+    const buyButton = <Card.Link as={Link} to={'/'}>
                         <button style={{margin:"auto"}} onClick={handleClick} > 
-                            buy
+                            Buy
                         </button>
                     </Card.Link>;
     
-    const returnButton = <Card.Link href="#">
-                            <Link to={'/'}>
-                                <button> Volver </button>
-                            </Link>
+    const returnButton = <Card.Link as={Link} to={'/'}>
+                                <button> Return </button>
                         </Card.Link>;
 
     if ( showButton ){

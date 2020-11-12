@@ -13,8 +13,8 @@ function getProductFromAPI(idProduct) {
 
 export function getProduct(idProduct) {
 
-    const docRef = firebase.db.collection("cities").doc(idProduct);
-    return docRef.get()
+    return firebase.db.collection("products").doc(idProduct).get();
+    
 }
 
 
