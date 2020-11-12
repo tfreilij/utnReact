@@ -22,7 +22,7 @@ function Product(props) {
             },
                 (error) => { console.log("hubo un error" , error)
             }) 
-        }, 
+        },
         []
     );
         
@@ -36,7 +36,7 @@ function Product(props) {
     else {
          return (
             <div> 
-                <ProductoDisplay id={product.id} product={product.data()} button={true}/> 
+                <ProductoDisplay key={product.id} id={product.id} product={product.data()} button={true}/> 
             </div>
         )     
     }

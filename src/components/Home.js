@@ -36,7 +36,7 @@ function Products() {
          return (
             <div>
                 <CardDeck>
-                    {products.map( product => <ProductDisplay id={product.id} product={product.data()} button={false}/>)}
+                    {products.map( product => <ProductDisplay key={product.id} id={product.id} product={product.data()} button={false}/>)}
                </CardDeck>
             </div>
         )     
