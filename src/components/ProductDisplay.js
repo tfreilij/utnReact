@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import { Card } from 'react-bootstrap';
+import { Card, Nav } from 'react-bootstrap';
 
 function ProductDisplay(props) {
 
@@ -12,25 +12,31 @@ function ProductDisplay(props) {
     const price = product.price;
     const sku = product.sku;
     const productId =props.id;
+    const imgUrl = product.imageUrl;
     
+    console.log("imageUrl",imgUrl);
     const handleClick = () => alert('producto comprado');
-   
+
+    const style = {
+        width:"10em",
+        margin:"auto"
+    }
+
     const heading = <>
-            <Card.Title>
-                <Link to={'/product/'+productId}>
-                    {name}    
-                </Link>
-            </Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
+            <Card.Img variant="top"  src={imgUrl} />
+            <Nav.Link as={Link} to={'/product/'+productId} >{name} </Nav.Link>
+         
+            
+            <Card.Subtitle  >
                 {sku}
             </Card.Subtitle>
     </>;
 
     const body = <>
-        <Card.Text>
+        <Card.Text  >
             {description}
         </Card.Text>
-        <Card.Text>
+        <Card.Text >
             {price}
         </Card.Text>
     </>;
@@ -47,7 +53,8 @@ function ProductDisplay(props) {
 
     if ( showButton ){
        
-        return <Card style={{ width: '18rem' }}>
+        return <Card style={{ width: '10rem' }}>
+                
                     <Card.Body>
                         {heading}
                         {body}
@@ -58,7 +65,7 @@ function ProductDisplay(props) {
 
     }
     else {
-        return <Card style={{ width: '18rem' }}>
+        return <Card style={{ width: '10rem' }}>
                     <Card.Body>
                         {heading}
                         {body}

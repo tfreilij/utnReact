@@ -35,7 +35,7 @@ function Products() {
     else {
          return (
             <div>
-                <CardDeck>
+                <CardDeck style={ {padding:"1em"}}>
                     {products.map( product => <ProductDisplay key={product.id} id={product.id} product={product.data()} button={false}/>)}
                </CardDeck>
             </div>
