@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ProductoDisplay from './ProductDisplay';
 import {getProduct} from '../Services/ProductsServices';
+import { CardDeck } from 'react-bootstrap';
 
 function Product(props) {
 
@@ -35,9 +36,11 @@ function Product(props) {
     }
     else {
          return (
-            <div> 
-                <ProductoDisplay key={product.id} id={product.id} product={product.data()} button={true}/> 
-            </div>
+            <CardDeck style={ {padding:"1em"}}>
+                    <ProductoDisplay key={product.id} id={product.id} product={product.data()} button={true}/> 
+            </CardDeck>
+                
+            
         )     
     }
        

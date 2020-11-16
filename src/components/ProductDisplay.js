@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-import { Card, Nav } from 'react-bootstrap';
+import {Link, useHistory} from "react-router-dom";
+import { Card, Nav , Button} from 'react-bootstrap';
 
 function ProductDisplay(props) {
 
@@ -14,8 +14,17 @@ function ProductDisplay(props) {
     const productId =props.id;
     const imgUrl = product.imageUrl;
     
-    console.log("imageUrl",imgUrl);
-    const handleClick = () => alert('producto comprado');
+
+    const history = useHistory();
+
+    const handleBuyClick = () => {
+        alert('producto comprado');
+        history.push("/")
+    }
+
+    const handleReturnClick = () => {
+        history.push("/")
+    }
 
     const style = {
         width:"10em",
@@ -25,31 +34,20 @@ function ProductDisplay(props) {
     const heading = <>
             <Card.Img variant="top"  src={imgUrl} />
             <Nav.Link as={Link} to={'/product/'+productId} >{name} </Nav.Link>
-         
-            
-            <Card.Subtitle  >
-                {sku}
-            </Card.Subtitle>
     </>;
 
     const body = <>
-        <Card.Text  >
-            {description}
-        </Card.Text>
-        <Card.Text >
-            {price}
-        </Card.Text>
+               
+        <Card.Body> Sku : {sku}</Card.Body>
+        <Card.Body>Description : {description}</Card.Body>
+        <Card.Body>Price : {price}</Card.Body>
     </>;
 
-    const buyButton = <Card.Link as={Link} to={'/'}>
-                        <button style={{margin:"auto"}} onClick={handleClick} > 
-                            Buy
-                        </button>
-                    </Card.Link>;
+    const buyButton = <Button variant="primary" onClick={handleBuyClick} >Buy </Button>;
     
-    const returnButton = <Card.Link as={Link} to={'/'}>
-                                <button> Return </button>
-                        </Card.Link>;
+    const returnButton = <Button variant="primary" onClick={handleReturnClick} >Return </Button>
+          
+
 
     if ( showButton ){
        
