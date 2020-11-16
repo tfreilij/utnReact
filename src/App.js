@@ -7,14 +7,13 @@ import Product from "./components/Product";
 import Menu from "./components/Menu";
 
 import {BrowserRouter,Route} from "react-router-dom"
-import firebase from './Config/firebase'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component{
     constructor(props){
         super(props);
        
-        console.log(firebase);
     }
     
     render() {

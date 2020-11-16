@@ -16,7 +16,6 @@ function Menu(props) {
     return (
     <>
         <Navbar bg="light" variant="light">
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
             <Nav className="mr-auto">
                 {navLinks[0]}
                 {navLinks[1]}

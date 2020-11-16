@@ -16,10 +16,26 @@ function Login() {
     
     const handleClick = (e) =>{
       
-      const validLogin = signInWithEmailAndPassword(form.email,form.password);
 
-      if ( validLogin ) { history.push("/")}
-      e.preventDefault();
+      const email = form.email;
+      const password = form.password;
+      signInWithEmailAndPassword(email,password)
+      .then( data => {
+        alert("Logged in succesfully");
+        history.push("/")
+      })
+      .catch( err => {
+        const errorCode = err.code;
+        console.log("login error", err)
+
+        if ( errorCode === "auth/wrong-password") {
+          alert("Wrong password")
+        }
+        else if ( errorCode === "auth/user-not-found") {
+          alert("User doesnt exist")
+        }
+      })
+
 
 
     }
@@ -42,7 +58,7 @@ function Login() {
         <Form.Label>Password</Form.Label>
         <Form.Control onChange={handleChange} type="password" name="password" placeholder="Password" />
       </Form.Group>
-      <Button onClick={handleClick} variant="primary" type="submit">
+      <Button onClick={handleClick} variant="primary" >
        Accept
       </Button>
       

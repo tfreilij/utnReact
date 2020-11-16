@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import { createUserWithEmailAndPassword , addNewUser} from '../Services/UsersServices';
 
 
+
 function Registration() {
    
     const [form,setForm] = useState({name:'',
@@ -11,8 +12,9 @@ function Registration() {
                                     password:''
                                     });
     
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
 
+        console.log("vamos a registrar a ", form);
         const email = form.email;
         const password = form.password;
         const name  = form.name;
@@ -21,7 +23,7 @@ function Registration() {
         createUserWithEmailAndPassword(email,password)
         .then( data => {
             const userId = data.user.uid
-            console.log(data)
+            console.log("entramos al promise de sign in",data);
             addNewUser(name,surname,email,userId)
             .then(data => { console.log("data database",data)})
             .catch(error => {
@@ -50,22 +52,22 @@ function Registration() {
         <Form>
             <Form.Group >
         <Form.Label>Name</Form.Label>
-        <Form.Control onChange={handleChange} type="text" name="name" placeholder="Password" />
+        <Form.Control onChange={handleChange} type="text" name="name" placeholder="Name" />
       </Form.Group>
       <Form.Group >
         <Form.Label>Surname</Form.Label>
-        <Form.Control onChange={handleChange} type="text" name="surname" placeholder="Password" />
+        <Form.Control onChange={handleChange} type="text" name="surname" placeholder="Surname" />
       </Form.Group>
       <Form.Group >
         <Form.Label>Email address</Form.Label>
-        <Form.Control onChange={handleChange} type="email" name="email" placeholder="Enter email" />
+        <Form.Control onChange={handleChange} type="email" name="email" placeholder="Email" />
       </Form.Group>
       <Form.Group >
         <Form.Label>Password</Form.Label>
         <Form.Control onChange={handleChange} type="password" name="password" placeholder="Password" />
       </Form.Group>
 
-      <Button onClick={handleSubmit} variant="primary" type="submit">
+      <Button onClick={handleSubmit} variant="primary" >
        Accept
       </Button>
       

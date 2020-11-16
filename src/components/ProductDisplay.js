@@ -26,10 +26,7 @@ function ProductDisplay(props) {
         history.push("/")
     }
 
-    const style = {
-        width:"10em",
-        margin:"auto"
-    }
+    
 
     const heading = <>
             <Card.Img variant="top"  src={imgUrl} />
@@ -46,12 +43,16 @@ function ProductDisplay(props) {
     const buyButton = <Button variant="primary" onClick={handleBuyClick} >Buy </Button>;
     
     const returnButton = <Button variant="primary" onClick={handleReturnClick} >Return </Button>
-          
+    const style = {
+        width:"10em",
+        height: "35em",
+        margin:"auto"
+    }
 
 
     if ( showButton ){
        
-        return <Card style={{ width: '10rem' }}>
+        return <Card style={style}>
                 
                     <Card.Body>
                         {heading}
@@ -63,7 +64,7 @@ function ProductDisplay(props) {
 
     }
     else {
-        return <Card style={{ width: '10rem' }}>
+        return <Card style={style}>
                     <Card.Body>
                         {heading}
                         {body}
